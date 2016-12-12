@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CourseScraper.Hierarchy;
+using CourseScraper.CurriculumScraping;
+using CourseScraper.GraphPlanner;
 
-namespace WindowsFormsApplication1
+namespace CourseScraper
 {
     static class Program
     {
@@ -14,9 +17,23 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            other();
+        }
+
+        static void other()
+        {
+            AllCoursesScraper coursesScraper = new AllCoursesScraper();
+            University uwm = coursesScraper.scrape();
+
+            
+            AllCurriculumScraper curriculumsScraper = new AllCurriculumScraper();
+            List<EngineeringCurriculum> curriculumList = curriculumsScraper.scrape();
+
+            AllGerDistributionScraper gerScraper = new AllGerDistributionScraper();
+            Dictionary<string, List<string>> gerDictionary = gerScraper.scrape();
+
+            GraphEngine engine = new GraphEngine();
+            engine.buildPlan(uwm, curriculumList, gerDictionary);
         }
     }
 }
