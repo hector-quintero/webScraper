@@ -243,7 +243,7 @@ namespace CourseScraper.GraphPlanner
             x = 8;
         }
 
-        private static string fileName = @"C:\Users\Public\TestFolder\Default CS Plan JSON.txt";
+        private static string fileName = Program.CURRENT_PATH + @"\Default CS Plan JSON.json";
         private void adjustPostReqs(List<List<CourseNode>> realPlan, Course postReq, int preNewLevel)
         {
             foreach(List<CourseNode> innerList in realPlan)

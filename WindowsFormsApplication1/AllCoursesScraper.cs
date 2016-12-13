@@ -20,7 +20,7 @@ namespace CourseScraper
         private static readonly String collegesTagging = "Schools and Colleges";
         private static readonly String departmentTagging = "Courses: ";
         private static readonly String uwmSiteStub = "https://www4.uwm.edu";
-        private static readonly String fileName = @"C:\Users\Public\TestFolder\UWM Courses JSON.txt";
+        private static readonly String fileName = Program.CURRENT_PATH + @"\UWM Courses JSON.json";
 
         public University scrape()
         {
@@ -31,7 +31,11 @@ namespace CourseScraper
 
             //DataContractJsonSerializer serialized = new DataContractJsonSerializer(typeof(Course));
 
-            
+            bool exists = System.IO.Directory.Exists(Program.CURRENT_PATH);
+
+            if (!exists)
+                System.IO.Directory.CreateDirectory(Program.CURRENT_PATH);
+
             using (System.IO.StreamWriter file =
             new System.IO.StreamWriter(fileName))
             {
@@ -102,7 +106,7 @@ namespace CourseScraper
 
             foreach(String url in colleges.Keys)
             {
-                if (!colleges.ElementAt(1).Key.Equals(url) && !colleges.ElementAt(4).Key.Equals(url) && !colleges.ElementAt(8).Key.Equals(url)) continue;
+                //if (!colleges.ElementAt(1).Key.Equals(url) && !colleges.ElementAt(4).Key.Equals(url) && !colleges.ElementAt(8).Key.Equals(url)) continue;
                 scrapeCollege(colleges[url], uwmSiteStub + url);
                 university.collegeList.Add(colleges[url]);
             }

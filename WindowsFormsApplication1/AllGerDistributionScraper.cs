@@ -72,7 +72,7 @@ namespace CourseScraper
             return list;
         }
 
-        private const string fileName = @"C:\Users\Public\TestFolder\Ger Distributions JSON.txt";
+        private static string fileName = Program.CURRENT_PATH + @"\Ger Distributions JSON.json";
         public Dictionary<string, List<string>> scrape()
         {
             Dictionary<string, List<string>> gerListings = new Dictionary<string, List<string>>();

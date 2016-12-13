@@ -20,7 +20,7 @@ namespace CourseScraper.CurriculumScraping
             csURL = url;
         }
 
-        private static readonly String fileName = @"C:\Users\Public\TestFolder\CS Curriculum JSON.txt";
+        private static readonly String fileName = Program.CURRENT_PATH+@"\CS Curriculum JSON.json";
         public CompSciCurriculum scrape()
         {
             ScrapingBrowser browser = new ScrapingBrowser();
